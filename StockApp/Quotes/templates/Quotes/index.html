@@ -1,0 +1,42 @@
+{% extends 'app/layout.html'%}
+
+{% block content %}
+	<h1>DjangoStockApp</h1>
+
+	<form action="{% url 'Quotes:Quotes' %}" method="post" class="form-inline my-2 my-lg-0">
+		{% csrf_token %}
+		<input class="form-control" type="search" name="ticker" value="" placeholder="search for quote" />
+		<button class="btn btn-info" type="submit">Stock Quote</button>
+	</form>
+
+	<div class="card text-right">
+	  <div class="card-header">
+		Quote
+	  </div>
+	  <div class="card-body">
+		<blockquote class="blockquote mb-0">
+
+		{% if api %}
+			{% if api == "Error" %}
+				<p>There was a problem with your ticker symbol - Please try again</p>
+			{% else %}
+				<p>Price {{api.latestPrice}}</p>
+				<p>Previous Close {{api.previousClose}}</p>
+				<p>Market Cap {{api.marketCap}}</p>
+				<p>YTD Change {{api.ytdChange}}</p>
+				<p>52Wk High {{api.week52High}}</p>
+				<p>52Wk Low {{api.week52Low}}</p>
+				<footer class="blockquote-footer text-center">{{ api.companyName }}<cite title="Source Title">- DjangoStockApp </cite></footer>
+			{% endif %}
+		{% else %}
+			{% if ticker %}
+				<p>{{ticker}}</p>
+			{% else %}
+				<p>Nothing...</p>
+			{% endif %}
+		{% endif %}
+		</blockquote>
+	  </div>
+</div>
+
+{% endblock %}
