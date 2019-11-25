@@ -24,3 +24,4 @@ urlpatterns = [path('', views.home, name='home'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('admin/', admin.site.urls),
 	path('Quotes/', include(('Quotes.urls', 'Quotes'), namespace='Quotes')),]
+

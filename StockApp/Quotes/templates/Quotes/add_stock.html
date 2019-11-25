@@ -1,0 +1,42 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+	<form action="{% url 'Quotes:add_stock' %}" method="post" class="form-inline my-2 my-lg-0">
+		{% csrf_token %}
+		<input class="form-control" type="search" name="ticker" value="" placeholder="add ticker" />
+		<button class="btn btn-info" type="submit">Add Ticker</button>
+	</form>
+
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+		<th scope="col">Company Name</th>
+		<th scope="col">Price</th>
+		<th scope="col">Previous Close</th>
+		<th scope="col">Market Cap</th>
+		<th scope="col">YTD Change</th>
+		 <th scope="col">52Week High</th>
+		 <th scope="col">52WeekLow</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% if ticker %}
+	  {% for item in output %}
+    <tr>
+		<th scope="row">{{item.companyName}}</th>
+		<td>{{item.price}}</td>
+		<td>{{item.previousClose}}</td>
+		<td>{{item.marketCap}}</td>
+		<td>{{item.ytdChange}}</td>
+		<td>{{item.week52High}}</td>
+		<td>{{item.week52Low}}</td>
+    </tr>
+	  {% endfor %}
+	{% endif %}
+  </tbody>
+</table>
+
+<a href="{% url 'Quotes:delete_stock' %}">Delete Stock</a>
+
+{% endblock %}

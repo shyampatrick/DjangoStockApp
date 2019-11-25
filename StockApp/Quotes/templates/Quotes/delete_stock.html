@@ -1,0 +1,17 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<h4 class="text">Delete </h4>
+
+	{% if ticker %}
+	<div class="d-flex flex-row-reverse card" style="width: 18rem;">
+		<ul class="list-group list-group-flush">
+			{% for item in ticker %}
+				<li class="list-group-item text-right">{{item}} <a class="btn btn-warning" href="{% url 'Quotes:delete' item.id %}">Del</a></strong></li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+<a href="{% url 'Quotes:add_stock' %}">Add Stock</a>
+
+{% endblock %}

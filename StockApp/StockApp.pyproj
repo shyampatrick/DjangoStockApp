@@ -41,6 +41,9 @@
     <Compile Include="manage.py" />
     <Compile Include="Quotes\admin.py" />
     <Compile Include="Quotes\apps.py" />
+    <Compile Include="Quotes\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Quotes\migrations\__init__.py" />
     <Compile Include="Quotes\models.py" />
     <Compile Include="Quotes\tests.py" />
@@ -71,6 +74,8 @@
     <Folder Include="StockApp\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Quotes\templates\Quotes\add_stock.html" />
+    <Content Include="Quotes\templates\Quotes\delete_stock.html" />
     <Content Include="Quotes\templates\Quotes\index.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
