@@ -23,8 +23,8 @@ def contact(request):
     return render(request,
         'app/contact.html',
         {
-            'title':'Contact',
-            'message':'Your contact page.',
+            'title':'DJangoStockApp',
+            'message':'Contact Info',
             'year':datetime.now().year,
         })
 
@@ -34,7 +34,7 @@ def about(request):
     return render(request,
         'app/about.html',
         {
-            'title':'About',
-            'message':'Your application description page.',
+            'title':'DjangoStockApp',
+            'message':'Demo StockApp displaying stock info from IEXCloud.',
             'year':datetime.now().year,
         })
