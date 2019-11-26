@@ -38,6 +38,9 @@
     <Compile Include="app\views.py" />
     <Compile Include="app\__init__.py" />
     <Compile Include="app\migrations\__init__.py" />
+    <Compile Include="Dockerfile">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="manage.py" />
     <Compile Include="Quotes\admin.py" />
     <Compile Include="Quotes\apps.py" />
@@ -77,6 +80,7 @@
     <Content Include="Quotes\templates\Quotes\add_stock.html" />
     <Content Include="Quotes\templates\Quotes\delete_stock.html" />
     <Content Include="Quotes\templates\Quotes\index.html" />
+    <Content Include="Quotes\templates\Quotes\singlepage.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />

@@ -1,0 +1,90 @@
+{% extends 'app/layout.html'%}
+
+{% block content %}
+	<h1>DjangoStockApp</h1>
+
+	<form action="{% url 'Quotes:singlepage' %}" method="post" class="form-inline my-2 my-lg-0">
+		{% csrf_token %}
+		<input class="form-control" type="search" name="ticker" value="" placeholder="search for quote" />
+		<button class="btn btn-info" type="submit">Stock Quote</button>
+	</form>
+
+	<div class="card text-right">
+	  <div class="card-header">
+		Quote
+	  </div>
+	  <div class="card-body">
+		<blockquote class="blockquote mb-0">
+
+		{% if stock_info %}
+			{% if stock_info == "Error" %}
+				<p>There was a problem with your ticker symbol - Please try again</p>
+			{% else %}
+				<p>Price {{stock_info.latestPrice}}</p>
+				<p>Previous Close {{stock_info.previousClose}}</p>
+				<p>Market Cap {{stock_info.marketCap}}</p>
+				<p>YTD Change {{stock_info.ytdChange}}</p>
+				<p>52Wk High {{stock_info.week52High}}</p>
+				<p>52Wk Low {{stock_info.week52Low}}</p>
+				<footer class="blockquote-footer text-center">{{ stock_info.companyName }}<cite title="Source Title">- DjangoStockApp </cite></footer>
+			{% endif %}
+		{% else %}
+			<p> Search for quotes: Enter ticker in the search field above</p>
+		{% endif %}
+		</blockquote>
+	  </div>
+</div>
+
+
+<hr />
+
+	<form action="{% url 'Quotes:singlepage_addstock' %}" method="post" class="form-inline my-2 my-lg-0">
+		{% csrf_token %}
+		<input class="form-control" type="search" name="ticker" value="" placeholder="add ticker" />
+		<button class="btn btn-info" type="submit">Add Ticker</button>
+	</form>
+
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+		<th scope="col">Company Name</th>
+		<th scope="col">Price</th>
+		<th scope="col">Previous Close</th>
+		<th scope="col">Market Cap</th>
+		<th scope="col">YTD Change</th>
+		 <th scope="col">52Week High</th>
+		 <th scope="col">52WeekLow</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% if ticker_list %}
+	  {% for item in favorites %}
+    <tr>
+		<th scope="row">{{item.companyName}}</th>
+		<td>{{item.price}}</td>
+		<td>{{item.previousClose}}</td>
+		<td>{{item.marketCap}}</td>
+		<td>{{item.ytdChange}}</td>
+		<td>{{item.week52High}}</td>
+		<td>{{item.week52Low}}</td>
+    </tr>
+	  {% endfor %}
+	{% endif %}
+  </tbody>
+</table>
+
+<hr />
+
+<h4 class="text bg-primary">Delete </h4>
+
+	{% if ticker_list %}
+	<div class="d-flex flex-row-reverse card" style="width: 18rem;">
+		<ul class="list-group list-group-flush">
+			{% for item in ticker_list %}
+				<li class="list-group-item text-right">{{item}} <a class="btn btn-warning" href="{% url 'Quotes:singlepage_delete' item.id %}">Del</a></strong></li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+
+{% endblock %}

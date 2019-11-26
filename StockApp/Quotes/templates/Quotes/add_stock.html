@@ -2,12 +2,16 @@
 
 {% block content %}
 
+<h5 class="text-right" ><a href="{% url 'Quotes:Quotes' %}">Search </a></h5>
+
 	<form action="{% url 'Quotes:add_stock' %}" method="post" class="form-inline my-2 my-lg-0">
 		{% csrf_token %}
 		<input class="form-control" type="search" name="ticker" value="" placeholder="add ticker" />
 		<button class="btn btn-info" type="submit">Add Ticker</button>
 	</form>
 
+
+ 
 <table class="table table-striped table-dark">
   <thead>
     <tr>

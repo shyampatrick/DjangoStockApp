@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-expand navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,7 +24,20 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							QuotesApp
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<ul>
+							<li><a class="dropdown-item" href="{% url 'Quotes:Quotes' %}">Stock App</a></li>
+							<li> <a class="dropdown-item" href="{% url 'Quotes:singlepage' %}">Singlepage</a></li>
+						</ul>
+						</div>
+					</li>
+                    
+					<li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>
                 {% include 'app/loginpartial.html' %}
